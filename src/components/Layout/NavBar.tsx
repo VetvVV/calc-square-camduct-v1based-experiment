@@ -12,6 +12,7 @@ const linkClass = ({ isActive }: { isActive: boolean }) =>
 export function NavBar() {
   const { t } = useTranslation()
   const role = useAppStore((state) => state.role)
+  const canSeeProjectModes = canViewSpecification(role)
 
   return (
     <div className="border-b border-slate-300 bg-[#e4e4e4]">
@@ -23,10 +24,12 @@ export function NavBar() {
           <NavLink to="/atlas" className={linkClass}>
             {t('nav.atlas')}
           </NavLink>
-          <NavLink to="/split" className={linkClass}>
-            {t('nav.split')}
-          </NavLink>
-          {canViewSpecification(role) ? (
+          {canSeeProjectModes ? (
+            <NavLink to="/split" className={linkClass}>
+              {t('nav.split')}
+            </NavLink>
+          ) : null}
+          {canSeeProjectModes ? (
             <NavLink to="/specification" className={linkClass}>
               {t('nav.specification')}
             </NavLink>

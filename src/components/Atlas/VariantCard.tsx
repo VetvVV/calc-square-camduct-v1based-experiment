@@ -17,7 +17,7 @@ export function VariantCard({ product }: VariantCardProps) {
       type="button"
       onClick={() => {
         if (isAvailable) {
-          navigate(`/split?module=${product.moduleKey}`)
+          navigate(`/calculator?module=${product.moduleKey}`)
         }
       }}
       className={[

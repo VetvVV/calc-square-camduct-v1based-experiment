@@ -1,6 +1,6 @@
 export const buildInfo = {
   "version": "2.0.0",
   "stage": "MVP",
-  "buildDateTime": "30.06.2026 14:00",
+  "buildDateTime": "01.07.2026 02:18",
   "commitHash": null
 } as const

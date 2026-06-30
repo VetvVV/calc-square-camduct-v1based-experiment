@@ -1,5 +1,6 @@
 import { readFileSync, writeFileSync, mkdirSync } from 'node:fs'
 import { dirname } from 'node:path'
+import { fileURLToPath } from 'node:url'
 
 const pkg = JSON.parse(readFileSync(new URL('./package.json', import.meta.url), 'utf8'))
 const now = new Date()
@@ -22,6 +23,6 @@ const content = `export const buildInfo = ${JSON.stringify({
   commitHash: process.env.GITHUB_SHA ?? null,
 }, null, 2)} as const\n`
 
-const out = new URL('./src/build-info.ts', import.meta.url)
-mkdirSync(dirname(out.pathname), { recursive: true })
-writeFileSync(out, content)
+const outFile = fileURLToPath(new URL('./src/build-info.ts', import.meta.url))
+mkdirSync(dirname(outFile), { recursive: true })
+writeFileSync(outFile, content)
